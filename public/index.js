@@ -27,7 +27,7 @@ const createAccount = (event) => {
     chat.classList.remove("hidden")
 } 
 
-const createMessage = ({username, profilePicture, message, date}, isCurrentUser) => {
+const createMessage = ({username, profile_picture, message, datestamp}, isCurrentUser) => {
     console.log(isCurrentUser)
     const messageContainer = document.createElement("div")
     let messageStyles, messageDirection
@@ -43,12 +43,12 @@ const createMessage = ({username, profilePicture, message, date}, isCurrentUser)
             <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
                 <div>
                     <span class="px-4 py-2 rounded-lg inline-block ${messageStyles}">
-                        <span class="block"><b class="mr-1">${username}</b>${date}</span>
+                        <span class="block"><b class="mr-1">${username}</b>${datestamp}</span>
                         ${message}
                     </span>
                 </div>
             </div>
-            <img src="${profilePicture}" alt="My profile" class="w-6 h-6 rounded-full order-2 object-cover">
+            <img src="${profile_picture}" alt="My profile" class="w-6 h-6 rounded-full order-2 object-cover">
         </div>
     `
    return messageContainer
@@ -73,8 +73,8 @@ sendMessageButton.addEventListener("click", () => {
         socket.emit("messageAdded", {
             username: username,
             message: messageText.value,
-            profilePicture: imageURL,
-            date: "10/26/2022"
+            profile_picture: imageURL,
+            datestamp: Date.now()
         })
     }
     messageText.value = ""
