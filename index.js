@@ -3,6 +3,7 @@ import { Server as HttpServer } from "http"
 import { Server as IOServer } from "socket.io"
 import db from "./db/db.js"
 import productsRouter from "./routes/products.route.js"
+import { PORT } from "./config.js"
 
 const app = express()
 const httpServer = new HttpServer(app)
@@ -60,4 +61,4 @@ io.on('connection', (socket) => {
     })
 })
 
-httpServer.listen(3000, () => console.log('SERVER ON'))
+httpServer.listen(PORT, () => console.log('SERVER RUNNING ON PORT '+PORT))
